@@ -40,6 +40,7 @@ class XGBDistribution(XGBModel, RegressorMixin):
         sample_weight_eval_set=None,
         feature_weights=None,
         callbacks=None,
+        enable_categorical=False
     ):
         """Fit gradient boosting distribution model.
 
@@ -130,7 +131,7 @@ class XGBDistribution(XGBModel, RegressorMixin):
             base_margin_eval_set=base_margin_eval_set,
             eval_group=None,
             eval_qid=None,
-            create_dmatrix=lambda **kwargs: DMatrix(nthread=self.n_jobs, **kwargs),
+            create_dmatrix=lambda **kwargs: DMatrix(nthread=self.n_jobs, enable_categorical=enable_categorical, **kwargs),
             label_transform=lambda x: x,
         )
 
